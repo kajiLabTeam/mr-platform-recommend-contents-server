@@ -10,6 +10,7 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/kajiLabTeam/mr-platform-recommend-contents-server/controller"
 	_ "github.com/lib/pq"
 )
 
@@ -39,6 +40,7 @@ func Init() {
 	r.GET("/hello", func(c *gin.Context) {
 		c.String(http.StatusOK, "Hello World!!")
 	})
+	r.POST("/api/recommend/contents", controller.RecommendContents)
 
 	// サーバーの起動状態を表示しながら、ポート8084でサーバーを起動する
 	if err := r.Run("0.0.0.0:8000"); err != nil {
