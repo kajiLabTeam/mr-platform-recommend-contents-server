@@ -1,11 +1,13 @@
 module github.com/kajiLabTeam/mr-platform-recommend-contents-server
 
-go 1.20
+go 1.22.5
 
 require (
 	github.com/gin-contrib/cors v1.7.2
 	github.com/gin-gonic/gin v1.10.0
 	github.com/lib/pq v1.10.9
+	github.com/neo4j/neo4j-go-driver/v5 v5.23.1
+	github.com/uber/h3-go/v4 v4.1.0
 )
 
 require (
