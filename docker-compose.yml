@@ -1,30 +1,16 @@
 services:
-    postgres:
-        container_name: ${POSTGRES_CONTAINER_HOST}
-        image: postgres:15
-        restart: always
-        ports:
-            - "5433:5432"
-        volumes:
-            - ./docker/postgres/init:/docker-entrypoint-initdb.d
-            - ./docker/postgres/data:/var/lib/postgresql/data
-        environment:
-            POSTGRES_USER: ${POSTGRES_USER}
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-            POSTGRES_DB: ${POSTGRES_DB}
-
-    golang:
-        container_name: ${GO_CONTAINER_HOST}
-        hostname: ${GO_HOST}
-        tty: true
-        env_file: .env
-        build:
-            context: .
-            dockerfile: ./docker/go/Dockerfile
-        volumes:
-            - ./src:/go/src/app
-            - ./docker/go/log:/go/src/log
-        depends_on:
-            - "postgres"
-        ports:
-            - 8086:8000
+  golang:
+    container_name: ${GO_CONTAINER_HOST}
+    hostname: ${GO_HOST}
+    tty: true
+    env_file: .env
+    build:
+      context: .
+      dockerfile: ./docker/go/Dockerfile
+    volumes:
+      - ./src:/go/src/app
+      - ./docker/go/log:/go/src/log
+    depends_on:
+      - 'postgres'
+    ports:
+      - 8086:8000
